@@ -61,4 +61,19 @@ $(document).ready(function() {
         headerStuff();
     });
 
+    var backToBtn = jQuery('.back-to-top');
+    jQuery(window).scroll(function () {
+        if (jQuery(window).scrollTop() > 300) {
+            backToBtn.addClass('active');
+        } else {
+            backToBtn.removeClass('active');
+        }
+    });
+    backToBtn.on('click', function (e) {
+        e.preventDefault();
+        jQuery('html, body').animate({
+            scrollTop: 0
+        }, '300');
+    });
+
 });

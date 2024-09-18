@@ -26,36 +26,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-chiropractic:before {
-  content: "\e905";
-  color: #4a4a4a;
-}
-
-.icon-posture:before {
-  content: "\e906";
-  color: #4a4a4a;
-}
-
-.icon-consultation:before {
-  content: "\e907";
-  color: #4a4a4a;
-}
-
-.icon-adjustment:before {
-  content: "\e908";
-  color: #4a4a4a;
-}
-
-.icon-movement:before {
-  content: "\e909";
-  color: #4a4a4a;
-}
-
-.icon-nervous:before {
-  content: "\e904";
-  color: #4a4a4a;
-}
-
 .icon-fb:before {
   content: "\e900";
   color: #ece2ae;
@@ -76,6 +46,30 @@
   color: #ece2ae;
 }
 
+/* reset css */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* genral css */
 
 :root {
   --primary-color: #A5925F;
@@ -88,12 +82,6 @@
   --jakarta-font: "Plus Jakarta Sans", sans-serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html,
 body {
   margin: 0;
   padding: 0;
@@ -101,6 +89,7 @@ body {
   color: var(--black-color);
   overflow-x: hidden;
   font-family: var(--jakarta-font);
+  -webkit-font-smoothing: antialiased;
 }
 
 
@@ -228,11 +217,13 @@ img::selection {
   background: transparent;
 }
 
-section {
-  padding-bottom: 100px;
+.container{
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
-
-
 
 /* Button CSS */
 .site-btn {
@@ -257,7 +248,7 @@ section {
 
 
 .close-icon {
-  display: block;
+  display: none;
   padding: 0;
   width: 33px;
   min-width: 33px;
@@ -268,11 +259,12 @@ section {
   position: relative;
   opacity: 1;
   z-index: 99999;
+  margin: 20px 20px 10px auto;
 }
 
 .close-icon::after,
 .close-icon::before {
-  width: 30px;
+  width: 25px;
   height: 2px;
   background: #000;
   display: inline-block;
@@ -367,6 +359,10 @@ header .container {
   margin-right: 10px;
 }
 
+.nav-toggle {
+  display: none;
+}
+
 .sticky-header header {
   position: fixed;
   width: 100%;
@@ -422,6 +418,7 @@ body.sticky-header {
   visibility: hidden;
   cursor: pointer;
   z-index: 9999;
+  background: var(--primary-color);
 }
 
 .back-to-top:after {
@@ -448,17 +445,28 @@ body.sticky-header {
   background: var(--primary-color);
 }
 
+/* Footer css */
 
 footer {
-  border-radius: 100px 100px 0 0;
+  border-radius: calc(40px + (100 - 40) * ((100vw - 300px) / (1920 - 300))) calc(40px + (100 - 40) * ((100vw - 300px) / (1920 - 300))) 0 0;
   background-color: var(--black-color);
   padding: calc(60px + (100 - 60) * ((100vw - 300px) / (1920 - 300))) 0 0;
+  margin-top: 100px;
 }
+
+footer .container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* footer .container >div{
+  width: 20%;
+} */
 
 footer .footer-title {
   color: var(--white-color);
   font-family: var(--inter-font);
-
 }
 
 footer a,
@@ -537,14 +545,45 @@ footer .footer-abt .footer-adress {
 }
 
 footer .copy-right {
+  width: 100% !important;
   margin-top: 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 36px 0;
+  text-align: center;
 }
 
 /* Responsive CSS */
-@media(min-width:992px) {
+@media (min-width: 576px) {
+  .container{
+      max-width: 560px;
+  }
+}
 
+@media (min-width: 768px) {
+  .container{
+      max-width: 750px;
+  }
+
+  footer .container .footer-link  {
+    order: 0;
+  }
+  
+  footer .container .footer-addres {
+    order: 2;
+  }
+  footer .copy-right {
+    order: 4;
+  }
+
+  footer .footer-abt {
+    order: 1;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+      max-width: 990px;
+  }
 
   .navigation-menu .menu-wrap>ul.main-menu>li.nav-item>a::after {
     content: '';
@@ -563,23 +602,35 @@ footer .copy-right {
     transform: scaleX(1);
     transform-origin: bottom left;
   }
-
 }
 
+@media (min-width: 1200px) {
+  .container {
+      max-width: 1170px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+      max-width: 1350px;
+  }
+}
 
 @media(min-width:1600px) {
   .container {
-    max-width: 1400px;
+    max-width: 1430px;
   }
 }
 
-@media(max-width:1699px) {}
-
-@media(max-width:1399px) {
-  .hero-banner .hero-img img {
-    width: 40%;
+@media(min-width:2000px) {
+  .container {
+    max-width: 1630px;
   }
+}
 
+
+@media(max-width:1399.5px) {
+ 
   .navigation-menu ul li.nav-item {
     margin-right: 25px;
   }
@@ -594,7 +645,7 @@ footer .copy-right {
   }
 }
 
-@media (max-width:1199px) {
+@media (max-width:1199.5px) {
   .navigation-menu ul li.nav-item a {
     font-size: 14px;
   }
@@ -626,13 +677,17 @@ footer .copy-right {
 
 }
 
-@media(max-width:991px) {
+@media(max-width:991.5px) {
   .header {
     padding: 10px 0;
   }
 
   .header .brand {
     width: 100px;
+  }
+
+  .close-icon {
+    display: block;
   }
 
   .inner-page-banner .white-box {
@@ -645,21 +700,15 @@ footer .copy-right {
   }
 
   .nav-toggle {
-    border: none;
-    padding: 0;
-
-    background-color: transparent;
-  }
-
-  .nav-toggle .navbar-toggler-icon {
-    background: transparent;
     display: block;
     position: relative;
-    height: 40px;
-    min-width: 40px !important;
+    height: 35px;
+    min-width: 35px !important;
   }
 
-
+  .nav-toggle svg{
+    width: 35px;
+  }
 
   .navbar-nav {
     position: fixed;
@@ -707,19 +756,7 @@ footer .copy-right {
   .open-menu .navbar-nav {
     left: 0;
   }
-
-  .menu-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 15px;
-    padding: 15px;
-  }
-
-  .mobile-logo {
-    width: 100px;
-  }
-
+  
   .main-menu {
     display: block;
   }
@@ -745,10 +782,27 @@ footer .copy-right {
     color: var(--primary-color);
   }
 
+}
 
-  @media (max-width:767px) {
+  @media (max-width:767.5px) {
+
+    .container{
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+
     .navigation-menu ul li.nav-item {
       padding: 6px 20px 20px;
+    }
+
+    footer .container >div {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    footer .container >div:last-of-type{
+      margin-bottom: 0;
     }
 
     footer .footer-abt .footer-adress {
@@ -784,4 +838,3 @@ footer .copy-right {
       font-size: 15px;
     }
   }
-}
